@@ -6,14 +6,11 @@ export default function Results(props) {
 
   //const resultsList = props.results;
   
-  
-  
     return (
       <div className="results">
         {props.results.map(book => {
           
           // const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : 'No Author';
-          
 
          return  <Book 
           key={book.id}

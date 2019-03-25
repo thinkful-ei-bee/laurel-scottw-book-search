@@ -11,16 +11,18 @@ class App extends Component {
       results: [],
       error: '',
       typeFilter: '',
+      printFilter: 'all',
 
     }
   }
 
-  handleTypeFilter(filter) {
-    this.setState({typeFilter: filter});
-    //this.handleBookSearch();
+  handlePrintFilter(filter) {
+    this.setState({printFilter: filter});
   }
 
-  
+  handleTypeFilter(filter) {
+    this.setState({typeFilter: filter});
+  }
 
   handleQuery (newQuery) {
     this.setState ({query: newQuery})
@@ -31,9 +33,9 @@ class App extends Component {
     const apiKey = 'AIzaSyDp6aaQ1ZDHyfVDmC8_4Bx7nCt4EDA7mYs';
     let requestUrl = '';
     if (this.state.typeFilter !== '') {
-      requestUrl = `${url}key=${apiKey}&q=${this.state.query}&filter=${this.state.typeFilter}` 
+      requestUrl = `${url}key=${apiKey}&q=${this.state.query}&printType=${this.state.printFilter}&filter=${this.state.typeFilter}` 
     } else {
-      requestUrl = `${url}key=${apiKey}&q=${this.state.query}`
+      requestUrl = `${url}key=${apiKey}&q=${this.state.query}&printType=${this.state.printFilter}`
     }
     fetch(requestUrl)
       .then(res => {
@@ -48,9 +50,6 @@ class App extends Component {
       .catch(err => this.setState({error: err}))
   }
 
-
-
-
   render() {
     return (
       <div className="App">
@@ -59,7 +58,8 @@ class App extends Component {
         </header>
         <Search handleBookSearch={this.handleBookSearch.bind(this)}
         handleQuery={this.handleQuery.bind(this)}
-        handleTypeFilter={this.handleTypeFilter.bind(this)}/>
+        handleTypeFilter={this.handleTypeFilter.bind(this)}
+        handlePrintFilter={this.handlePrintFilter.bind(this)}/>
         <Results results={this.state.results}/>
       </div>
     );
