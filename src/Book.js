@@ -16,7 +16,9 @@ export default function Book(props) {
         <h2>{props.title}</h2>
         <p>Author: {props.author}</p>
         <p>Price: {price}</p>
-        <p>{props.summary}</p>
+        {/* this does html entity decode */}
+        <p dangerouslySetInnerHTML={{ __html: props.summary }}></p> 
+        {/* <p dangerouslySetInnerHTML={{ __html: "<script> alert('hello I am an evil script!') </script>" }}></p>  */}
         <p>{eBook}</p>
         <a href={props.link}>More Info</a>
         

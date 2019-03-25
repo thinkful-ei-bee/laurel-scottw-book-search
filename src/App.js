@@ -10,11 +10,15 @@ class App extends Component {
       query: '',
       results: [],
       error: '',
+      typeFilter: '',
 
     }
   }
 
-  
+  handleTypeFilter(filter) {
+    this.setState({typeFilter: filter})
+    this.handleBookSearch();
+  }
 
   
 
@@ -23,9 +27,15 @@ class App extends Component {
   }
 
   handleBookSearch () {
-    const url = 'https://www.googleapis.com/books/v1/volumes?'
+    const url = 'https://www.googleapis.com/books/v1/volumes?';
     const apiKey = 'AIzaSyDp6aaQ1ZDHyfVDmC8_4Bx7nCt4EDA7mYs';
-    fetch(`${url}key=${apiKey}&q=${this.state.query}`)
+    let requestURL = '';
+    if (this.state.filter) {
+      requestURL = `${url}key=${apiKey}&q=${this.state.query}&filter=${this.state.filter}` 
+    } else {
+      requestURL = `${url}key=${apiKey}&q=${this.state.query}`
+    }
+    fetch({requestURL})
       .then(res => {
         return res.json()
       })
