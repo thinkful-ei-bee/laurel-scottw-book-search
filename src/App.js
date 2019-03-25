@@ -16,8 +16,8 @@ class App extends Component {
   }
 
   handleTypeFilter(filter) {
-    this.setState({typeFilter: filter})
-    this.handleBookSearch();
+    this.setState({typeFilter: filter});
+    //this.handleBookSearch();
   }
 
   
@@ -29,14 +29,15 @@ class App extends Component {
   handleBookSearch () {
     const url = 'https://www.googleapis.com/books/v1/volumes?';
     const apiKey = 'AIzaSyDp6aaQ1ZDHyfVDmC8_4Bx7nCt4EDA7mYs';
-    let requestURL = '';
-    if (this.state.filter) {
-      requestURL = `${url}key=${apiKey}&q=${this.state.query}&filter=${this.state.filter}` 
+    let requestUrl = '';
+    if (this.state.typeFilter !== '') {
+      requestUrl = `${url}key=${apiKey}&q=${this.state.query}&filter=${this.state.typeFilter}` 
     } else {
-      requestURL = `${url}key=${apiKey}&q=${this.state.query}`
+      requestUrl = `${url}key=${apiKey}&q=${this.state.query}`
     }
-    fetch({requestURL})
+    fetch(requestUrl)
       .then(res => {
+        console.log(requestUrl);
         return res.json()
       })
       .then(data => {
@@ -57,7 +58,8 @@ class App extends Component {
           <h1 className="App-title">Google Book Search</h1>
         </header>
         <Search handleBookSearch={this.handleBookSearch.bind(this)}
-        handleQuery={this.handleQuery.bind(this)}/>
+        handleQuery={this.handleQuery.bind(this)}
+        handleTypeFilter={this.handleTypeFilter.bind(this)}/>
         <Results results={this.state.results}/>
       </div>
     );

@@ -14,7 +14,8 @@ export default function Search(props) {
             props.handleBookSearch();}}
           />
       </form>
-      <select onChange={event => props.handleTypeFilter(event.target.value)}>
+      <label htmlFor='typeFilter'>Book Type</label>
+      <select id='typeFilter' onChange={event => props.handleTypeFilter(event.target.value)}>
           <option value="">Select a Filter</option>
           <option value="partial">Partial</option>
           <option value="full">Full</option>
