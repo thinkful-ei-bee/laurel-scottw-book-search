@@ -12,8 +12,8 @@ export default function Search(props) {
             event.preventDefault();
             props.handleBookSearch();}}
           />
-      
       </form>
+      
     );
 }
 

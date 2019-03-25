@@ -20,10 +20,12 @@ export default function Results(props) {
           title={book.volumeInfo.title}
           author={book.volumeInfo.authors ? book.volumeInfo.authors[0] : 'No Authors Listed'}
           price={book.saleInfo.listPrice ? book.saleInfo.listPrice.amount : 'Price Not Available'}
-          summary={book.searchInfo.textSnippet ? book.searchInfo.textSnippet : 'Summary Not Available'}
+          summary={book.searchInfo ? book.searchInfo.textSnippet : 'Summary Not Available'}
           image={book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : 'No Image'}
           eBook={book.saleInfo.isEbook}
           link={book.volumeInfo.infoLink}
+
+
         />
         }
         )}

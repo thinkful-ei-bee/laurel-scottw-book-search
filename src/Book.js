@@ -8,6 +8,8 @@ export default function Book(props) {
            .format(props.price)
   }
   
+  const eBook = props.eBook ? 'eBook Available' : 'eBook Not Available';
+  
     return (
       <div className="Book">
         <img src={props.image} alt='book'/>
@@ -15,7 +17,9 @@ export default function Book(props) {
         <p>Author: {props.author}</p>
         <p>Price: {price}</p>
         <p>{props.summary}</p>
+        <p>{eBook}</p>
         <a href={props.link}>More Info</a>
+        
 
       </div>
     );
