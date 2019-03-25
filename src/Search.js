@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Search extends Component {
-  render(props) {
+export default function Search(props) {
+  
     return (
       <form className="search-form">
         <legend>Search</legend>
         <input type="text" name="search-field" 
-        onChange={event => this.props.handleQuery(event.target.value)}></input>
+        onChange={event => props.handleQuery(event.target.value)}></input>
         <input type="submit" 
           onClick={(event) => {
             event.preventDefault();
-            this.props.handleBookSearch();}}
+            props.handleBookSearch();}}
           />
       
       </form>
     );
-  }
 }
 
-export default Search;
