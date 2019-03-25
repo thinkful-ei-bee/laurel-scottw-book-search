@@ -1,25 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Search from './Search';
+import Results from './Results';
 
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      query: '',
+      results: {}
+    }
+  }
+
+
+  handleQuery (newQuery) {
+    this.setState ({query: newQuery})
+  }
+
+  handleBookSearch () {
+    console.log(this.state.query);
+    //fetch request
+    //update state results
+  }
+
+
+
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <h1 className="App-title">Google Book Search</h1>
         </header>
+        <Search handleBookSearch={this.handleBookSearch.bind(this)}
+        handleQuery={this.handleQuery.bind(this)}/>
+        <Results />
       </div>
     );
   }
